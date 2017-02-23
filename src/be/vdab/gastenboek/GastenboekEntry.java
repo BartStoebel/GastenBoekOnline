@@ -8,6 +8,9 @@ package be.vdab.gastenboek;
 import be.vdab.exception.NewEntryException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.FormatStyle;
 import java.util.Objects;
 
 /**
@@ -63,7 +66,8 @@ public class GastenboekEntry implements Comparable<GastenboekEntry>{
 
     @Override
     public String toString() {
-        return "GastenboekEntry{" + "tijdstip= " + tijdstip + ", schrijver= " + schrijver + ", boodschap= " + boodschap + '}';
+        DateTimeFormatter dtf = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
+        return "GastenboekEntry{" + "tijdstip= " + tijdstip.format(dtf) + ", schrijver= " + schrijver + ", boodschap= " + boodschap + '}';
     }
 
     @Override
