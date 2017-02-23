@@ -27,7 +27,25 @@ public class Gastenboek {
     public List<GastenboekEntry> geefAlleEntries(){
         return getGastenlijst();
     }
-    
+
+    @Override
+    public String toString() {
+        String temp = "";
+        for (GastenboekEntry ge : gastenlijst){
+            temp = temp + ge.toString();
+        }
+        return temp;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(!(o instanceof Gastenboek)){
+            return false;
+        } else {
+            Gastenboek ge = (Gastenboek) o;
+            return getGastenlijst().equals(ge.getGastenlijst());
+        }
+    }
 
     public List<GastenboekEntry> getGastenlijst() {
         return gastenlijst;

@@ -6,6 +6,7 @@
 package be.vdab.main;
 
 import be.vdab.exception.NewEntryException;
+import be.vdab.gastenboek.Gastenboek;
 import be.vdab.gastenboek.GastenboekEntry;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +22,10 @@ public class GastenboekMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //GastenboekEntry ge = new GastenboekEntry("Bart", "Boodschap 1");
         String naam = "-";
         String boodschap = "";
         Scanner scanner = new Scanner(System.in);
-        List <GastenboekEntry> gastenlijst = new ArrayList<>();
+        Gastenboek gb = new Gastenboek();
         System.out.println("Typ je naam:");
         naam = scanner.nextLine();
         while (!naam.equals("")){
@@ -33,7 +33,7 @@ public class GastenboekMain {
             boodschap = scanner.nextLine();
             try{
                 GastenboekEntry ge = new GastenboekEntry(naam, boodschap);
-                gastenlijst.add(ge);    
+                gb.voegEntryToe(ge);    
             } catch (NewEntryException e){
                 System.err.println(e.toString());
                 System.err.println("Dit wordt niet toegevoegd in de lijst!");
@@ -41,7 +41,7 @@ public class GastenboekMain {
             System.out.println("Typ je naam:");
             naam = scanner.nextLine();
         }
-        for (GastenboekEntry ge : gastenlijst){
+        for (GastenboekEntry ge : gb.getGastenlijst()){
             System.out.println(ge.toString());
         }
         
