@@ -74,13 +74,20 @@ public class GastenboekEntry implements Comparable<GastenboekEntry>{
 
     @Override
     public boolean equals(Object o) {
+        if(!(o instanceof GastenboekEntry)){
+            return false;
+        } else{
+            GastenboekEntry ge = (GastenboekEntry) o;
+            if (this.getBoodschap() == ge.getBoodschap() && this.getTijdstip() == ge.getTijdstip()){
+                return true;
+            }
+        }
+        
         return super.equals(o); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public int hashCode() {
-        return 5*71*Objects.hashCode(this.tijdstip); //To change body of generated methods, choose Tools | Templates.
+        return 5*71*Objects.hashCode(this.tijdstip);
     }
-    
-    
 }
