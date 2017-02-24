@@ -7,12 +7,8 @@ package be.vdab.gastenboek;
 
 import be.vdab.exception.NewEntryException;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.time.format.FormatStyle;
-import java.util.Comparator;
 import java.util.Objects;
 
 /**
@@ -20,7 +16,7 @@ import java.util.Objects;
  * @author Vinnie
  */
 public class GastenboekEntry implements Comparable<GastenboekEntry>, Serializable{
-    //private final static long serialVersionUID = -5270027050259595806L;
+    private final static long serialVersionUID = -5270027050259595806L;
     private LocalDateTime tijdstip;
     private String schrijver;
     private String boodschap;
