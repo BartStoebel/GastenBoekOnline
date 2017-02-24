@@ -20,9 +20,11 @@ import java.util.Objects;
  * @author Vinnie
  */
 public class GastenboekEntry implements Comparable<GastenboekEntry>, Serializable{
+    private final static long serialVersionUID = -8307567697084441268L;
     private LocalDateTime tijdstip;
     private String schrijver;
     private String boodschap;
+    
     
     public GastenboekEntry(String schrijver, String boodschap) throws NewEntryException{
         setTijdstip(LocalDateTime.now());

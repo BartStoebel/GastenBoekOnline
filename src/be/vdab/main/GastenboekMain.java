@@ -25,12 +25,12 @@ public class GastenboekMain {
         System.out.println("Geef je keuze in: \n   * 1 voor lezen van gastenboek"
                 + "\n   * 2 voor nieuwe boodschap ingeven \n   * 3 voor einde");
         String input = scanner.nextLine();
-        while(input.equals("1") && input.equals("2") && input.equals("3")){
+        while(!input.equals("1") && !input.equals("2") && !input.equals("3")){
             System.out.println("Geef een correcte keuze in: \n   * 1 voor lezen van gastenboek"
                 + "\n   * 2 voor nieuwe boodschap ingeven \n   * 3 voor einde");
             input = scanner.nextLine();
         }
-        while (input == "1" || input == "2"){
+        while (input.equals("1") || input.equals("2")){
             try{
                 GastenboekManager gbm = new GastenboekManager();
                 if (input == "1"){  
