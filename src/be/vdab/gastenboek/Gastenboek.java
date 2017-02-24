@@ -12,10 +12,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,22 +23,35 @@ import java.util.logging.Logger;
 public class Gastenboek {
     private List<GastenboekEntry> gastenboek;
     private File file;
+    
     /**
      * Lees alle entries in het gastenboek.txt, en steek in List gastenboek
      */
     public Gastenboek() throws IOException{
         gastenboek = new ArrayList<>();
         this.file = new File("gastenboek.txt"); 
+        leesGastenboek();
+        
+    }
+    
+    /**
+     * lees alle objecten uit de file gastenboek, en steek ze in List<GastenboekEntry> gastenboek
+     * @return true als het gelukt is
+     * @throws IOException 
+     */
+    private boolean leesGastenboek() throws IOException{
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));){
             int size = ois.readInt();
             for (int i = 0; i < size ; i++){
                 GastenboekEntry ge = (GastenboekEntry) ois.readObject();
                 getGastenboek().add(ge);                
             }
+            return true;
         }catch(IOException e){ 
             throw e;            //throw this exception!!
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Gastenboek.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
     }
     /**
@@ -51,25 +61,26 @@ public class Gastenboek {
      */
     public boolean voegEntryToe(GastenboekEntry ge){
         gastenboek.add(ge);
-        
+        boolean bool = bewaarGastenboek();
+        return bool;
+    }
+    
+    /**
+     * Bewaar het gastenboek naar het bestand in file
+     * @return true als het gelukt is
+     */
+    private boolean bewaarGastenboek(){
         try (ObjectOutputStream oos = new ObjectOutputStream(new 
                 FileOutputStream(file));){
             oos.writeInt(getGastenboek().size());
-            for (GastenboekEntry allge : getGastenboek()){
-                oos.writeObject(allge);
+            for (GastenboekEntry ge : getGastenboek()){
+                oos.writeObject(ge);
             }
+            return true;
         } catch(IOException e){
-            System.err.println("Schrijven niet gelukt");
+            System.err.println("Opslaan gastenboek niet gelukt");
+            return false;
         }
-        return true;
-    }
-    
-    public Set<GastenboekEntry> geefAlleEntriesRecenteEerst(){
-        Set<GastenboekEntry> recenteEerst = new TreeSet(new MyComp());
-        for (GastenboekEntry e : getGastenboek()){
-            recenteEerst.add(e);
-        }
-        return recenteEerst;
     }
 
     @Override
@@ -80,7 +91,6 @@ public class Gastenboek {
         }
         return temp;
     }
-
     @Override
     public boolean equals(Object o) {
         if(!(o instanceof Gastenboek)){
@@ -94,19 +104,8 @@ public class Gastenboek {
     public List<GastenboekEntry> getGastenboek() {
         return gastenboek;
     }
-
     public void setGastenboek(List<GastenboekEntry> gastenboek) {
         this.gastenboek = gastenboek;
     }
-    
-    
-    
 }
-class MyComp implements Comparator<GastenboekEntry>{
 
-    @Override
-    public int compare(GastenboekEntry t, GastenboekEntry t1) {
-        return -t.getTijdstip().compareTo(t1.getTijdstip());
-    }
-    
-}

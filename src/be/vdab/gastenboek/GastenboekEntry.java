@@ -33,7 +33,6 @@ public class GastenboekEntry implements Comparable<GastenboekEntry>, Serializabl
     public LocalDateTime getTijdstip() {
         return tijdstip;
     }
-
     public final void setTijdstip(LocalDateTime tijdstip) {
         if(tijdstip != null ){
             this.tijdstip = tijdstip;
@@ -41,11 +40,9 @@ public class GastenboekEntry implements Comparable<GastenboekEntry>, Serializabl
             this.tijdstip = LocalDateTime.now();
         }
     }
-
     public String getSchrijver() {
         return schrijver;
     }
-
     public final void setSchrijver(String schrijver) throws NewEntryException {
         if(schrijver != null && !schrijver.isEmpty()){
             this.schrijver = schrijver;
@@ -53,11 +50,9 @@ public class GastenboekEntry implements Comparable<GastenboekEntry>, Serializabl
             throw new NewEntryException("Naam schrijver is niet opgegeven", "");
         }
     }
-
     public String getBoodschap() {
         return boodschap;
     }
-
     public final void setBoodschap(String boodschap) throws NewEntryException {
         if(boodschap != null && !boodschap.isEmpty()){
             this.boodschap = boodschap;
@@ -71,8 +66,7 @@ public class GastenboekEntry implements Comparable<GastenboekEntry>, Serializabl
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyy HH:mm:ss");
         return "GastenboekEntry{" + "tijdstip= " + tijdstip.format(dtf) + ", schrijver= " + schrijver + ", boodschap= " + boodschap + '}';
     }
-
-        @Override
+    @Override
     public boolean equals(Object o) {
         if(!(o instanceof GastenboekEntry)){
             return false;
@@ -85,17 +79,13 @@ public class GastenboekEntry implements Comparable<GastenboekEntry>, Serializabl
         
         return super.equals(o); //To change body of generated methods, choose Tools | Templates.
     }
-
     @Override
     public int hashCode() {
         return 5*71*Objects.hashCode(this.tijdstip);
     }
-
     @Override
     public int compareTo(GastenboekEntry t) {
         return this.getTijdstip().compareTo(t.getTijdstip());
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-   
 }

@@ -39,7 +39,7 @@ public class GastenboekMain {
             }
             
             
-            for (GastenboekEntry ge : gbm.getGb().geefAlleEntriesRecenteEerst()){
+            for (GastenboekEntry ge : gbm.geefAlleEntriesRecenteEerst()){
                 System.out.println(ge.toString());
             }
         }catch(IOException e){
