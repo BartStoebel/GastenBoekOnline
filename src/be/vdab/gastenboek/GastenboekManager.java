@@ -5,11 +5,40 @@
  */
 package be.vdab.gastenboek;
 
+import be.vdab.exception.NewEntryException;
+
 /**
  *
  * @author Vinnie
  */
 public class GastenboekManager {
+    private Gastenboek gb;
+    
+    public GastenboekManager(){
+        setGb(new Gastenboek());
+    }
+    
+    public boolean voegEntryToe(String naam, String boodschap){
+        try{
+            GastenboekEntry ge = new GastenboekEntry(naam, boodschap);
+            getGb().voegEntryToe(ge);
+            return true;
+        } catch (NewEntryException e){
+            System.out.println("be.vdab.gastenboek.GastenboekManager.voegEntryToe()" + e.toString());
+            System.err.println("Dit wordt niet toegevoegd in de lijst");
+            return false;
+        }
+    }
+    
+    
+
+    public Gastenboek getGb() {
+        return gb;
+    }
+
+    public final void setGb(Gastenboek gb) {
+        this.gb = gb;
+    }
     
     
 }
