@@ -6,18 +6,20 @@
 package be.vdab.gastenboek;
 
 import be.vdab.exception.NewEntryException;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.FormatStyle;
+import java.util.Comparator;
 import java.util.Objects;
 
 /**
  *
  * @author Vinnie
  */
-public class GastenboekEntry implements Comparable<GastenboekEntry>{
+public class GastenboekEntry implements Comparable<GastenboekEntry>, Serializable{
     private LocalDateTime tijdstip;
     private String schrijver;
     private String boodschap;
@@ -66,17 +68,11 @@ public class GastenboekEntry implements Comparable<GastenboekEntry>{
 
     @Override
     public String toString() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyy HH:mm:ss");
         return "GastenboekEntry{" + "tijdstip= " + tijdstip.format(dtf) + ", schrijver= " + schrijver + ", boodschap= " + boodschap + '}';
     }
 
-    @Override
-    public int compareTo(GastenboekEntry t) {
-        return this.getTijdstip().compareTo(t.getTijdstip());
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
+        @Override
     public boolean equals(Object o) {
         if(!(o instanceof GastenboekEntry)){
             return false;
@@ -94,4 +90,12 @@ public class GastenboekEntry implements Comparable<GastenboekEntry>{
     public int hashCode() {
         return 5*71*Objects.hashCode(this.tijdstip);
     }
+
+    @Override
+    public int compareTo(GastenboekEntry t) {
+        return this.getTijdstip().compareTo(t.getTijdstip());
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+   
 }

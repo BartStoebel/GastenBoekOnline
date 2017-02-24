@@ -6,6 +6,7 @@
 package be.vdab.gastenboek;
 
 import be.vdab.exception.NewEntryException;
+import java.io.IOException;
 
 /**
  *
@@ -14,7 +15,7 @@ import be.vdab.exception.NewEntryException;
 public class GastenboekManager {
     private Gastenboek gb;
     
-    public GastenboekManager(){
+    public GastenboekManager() throws IOException{
         setGb(new Gastenboek());
     }
     
