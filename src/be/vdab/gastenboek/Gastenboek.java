@@ -5,6 +5,9 @@
  */
 package be.vdab.gastenboek;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +24,13 @@ public class Gastenboek {
     
     public boolean voegEntryToe(GastenboekEntry ge){
         gastenlijst.add(ge);
+        
+        try (ObjectOutputStream oos = new ObjectOutputStream(new 
+                FileOutputStream("Gastenboek.txt"));){
+            oos.writeObject(ge,);
+        } catch(IOException e){
+            System.err.println("Schrijven niet gelukt");
+        }
         return true;
     }
     
