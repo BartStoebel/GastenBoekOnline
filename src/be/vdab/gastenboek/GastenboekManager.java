@@ -8,6 +8,7 @@ package be.vdab.gastenboek;
 import be.vdab.exception.NewEntryException;
 import be.vdab.util.MyComp;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -21,13 +22,14 @@ public class GastenboekManager {
     public GastenboekManager() throws IOException{
         setGb(new Gastenboek());
     }
+    
     public boolean voegEntryToe(String naam, String boodschap){
         if (boodschap.length()>60){
             System.out.println("De boodschap is te lang ... deze wordt niet toegevoegd");
             return false;
         } else {
             try{
-                GastenboekEntry ge = new GastenboekEntry(naam, boodschap);
+                GastenboekEntry ge = new GastenboekEntry(LocalDateTime.now(),naam, boodschap);
                 getGb().voegEntryToe(ge);
                 return true;
             } catch (NewEntryException e){

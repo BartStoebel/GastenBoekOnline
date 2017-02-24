@@ -29,6 +29,11 @@ public class GastenboekEntry implements Comparable<GastenboekEntry>, Serializabl
         setSchrijver(schrijver);
         setBoodschap(boodschap);
     }
+    public GastenboekEntry(LocalDateTime tijdstip, String schrijver, 
+             String boodschap) throws NewEntryException{
+        this(schrijver, boodschap);
+        setTijdstip(tijdstip);
+    }
 
     public LocalDateTime getTijdstip() {
         return tijdstip;

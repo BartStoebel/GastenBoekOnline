@@ -64,7 +64,6 @@ public class Gastenboek {
         boolean bool = bewaarGastenboek();
         return bool;
     }
-    
     /**
      * Bewaar het gastenboek naar het bestand in file
      * @return true als het gelukt is
