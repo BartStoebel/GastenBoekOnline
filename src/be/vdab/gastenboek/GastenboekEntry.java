@@ -20,7 +20,7 @@ import java.util.Objects;
  * @author Vinnie
  */
 public class GastenboekEntry implements Comparable<GastenboekEntry>, Serializable{
-    private final static long serialVersionUID = -8307567697084441268L;
+    //private final static long serialVersionUID = -5270027050259595806L;
     private LocalDateTime tijdstip;
     private String schrijver;
     private String boodschap;

@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -47,12 +48,15 @@ public class Gastenboek {
                 getGastenboek().add(ge);                
             }
             return true;
-        }catch(IOException e){ 
-            throw e;            //throw this exception!!
+        }catch (InvalidClassException e){
+            System.err.println("Boe");
+            throw e;
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Gastenboek.class.getName()).log(Level.SEVERE, null, ex);
             return false;
-        }
+        } catch(IOException e){ 
+            throw e;            //throw this exception!!
+        } 
     }
     /**
      * voeg Entry toe aan de gestenlijst, en aan gastenboek.txt

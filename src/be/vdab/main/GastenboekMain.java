@@ -33,11 +33,11 @@ public class GastenboekMain {
         while (input.equals("1") || input.equals("2")){
             try{
                 GastenboekManager gbm = new GastenboekManager();
-                if (input == "1"){  
+                if (input.equals("1")){  
                     for (GastenboekEntry ge : gbm.geefAlleEntriesRecenteEerst()){
                         System.out.println(ge.toString());
                     }
-                } else if(input == "2"){
+                } else if(input.equals("2")){
                     String naam = "";
                     String boodschap;
                     System.out.println("Typ je naam:");
@@ -46,17 +46,19 @@ public class GastenboekMain {
                         System.out.println("Typ je boodschap:");
                         boodschap = scanner.nextLine();
                         gbm.voegEntryToe(naam, boodschap);
-                        System.out.println("Typ je naam:");
+                        System.out.println("\nVoer volgende boodschap is: \nTyp je naam: (of sluit af met enter)");
                         naam = scanner.nextLine();
                     }
                 }
-
-            } catch (IOException e){
-                System.err.println("be.vdab.main.GastenboekMain.main()" +  e.getMessage());
-            }
-            System.out.println("Geef je keuze in: \n   * 1 voor lezen van gastenboek"
+            System.out.println("\nGeef je keuze in: \n   * 1 voor lezen van gastenboek"
                     + "\n   * 2 voor nieuwe boodschap ingeven \n   * 3 voor einde");
-            input = scanner.nextLine();
+            input = scanner.nextLine();    
+            } catch (IOException e){
+                input = "3";
+                System.err.println("be.vdab.main.GastenboekMain.main()" +  "Vinnie: " + e.getMessage());
+            }
+            
+            
         }
     }
 }
