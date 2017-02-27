@@ -18,7 +18,7 @@ public class NewEntryException extends Exception{
     }
 
     public String getMessage() {
-        return message;
+        return message; 
     }
 
     public void setMessage(String message) {
